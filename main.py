@@ -3,7 +3,7 @@ from collections import deque
 
 class ArcConsistency:
 
-    def __init__(self, name):
+    def __init__(self, name): # Constructor
         self.colors = dict()
         self.neighbours = dict()
         self.name_file = name
@@ -26,33 +26,33 @@ class ArcConsistency:
     def __arc_consistency(self):
         queue = self.__get_queue()
         while len(queue) > 0:
-            actual = queue.popleft()
-            if self.__rm_icons_values(actual):
-                for neighbour in self.neighbours[actual[0]]:
-                    queue.append([neighbour, actual[0]])
+            current = queue.popleft()
+            if self.__remove_colors(current):
+                for neighbour in self.neighbours[current[0]]:
+                    queue.append([neighbour, current[0]])
 
-    def __rm_icons_values(self, actual):
+    def __remove_colors(self, current):
         removed = False
-        for color in self.colors[actual[0]]:
-            if color in self.colors[actual[1]] and len(self.colors[actual[1]]) == 1:
+        for color in self.colors[current[0]]:
+            if color in self.colors[current[1]] and len(self.colors[current[1]]) == 1:
                 removed = True
-                self.colors[actual[0]].remove(color)
+                self.colors[current[0]].remove(color)
         return removed
 
     def get_result(self):
         self.__get_info()
         self.__arc_consistency()
-        print(f'For the file " {self.name_file} "')
+        print(f'Pentru fisierul " {self.name_file} "')
         ok = False
         for value in self.colors.values():
             if len(value) != 1:
                 ok = True
         if ok:
-            print("The coloring is impossible using this algorithm.")
+            print("Colorarea este imposibila")
         else:
-            print("The coloring is the following---->")
+            print("Colorarea:")
             for key, values in self.colors.items():
-                print(f'The color of the {key} is {values}')
+                print(f'Culoarea pentru nodul {key} este {values}')
 
 
 if __name__ == "__main__":
