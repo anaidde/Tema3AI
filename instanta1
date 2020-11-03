@@ -1,3 +1,0 @@
-WA: {SA, NT}; {red, green, blue}
-SA: {WA, NT}; {red, green}
-NT: {WA, SA}; {green}
