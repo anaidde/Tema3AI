@@ -1,7 +1,0 @@
-T: {V}; {red, blue, green}
-WA: {NT, SA}; {red}
-NT: {WA, Q, SA}; {red, blue, green}
-SA: {WA, NT, Q, NSW, V}; {red, blue, green}
-Q: {NT, SA, NSW}; {green}
-NSW: {Q, SA, V}; {red, blue, green}
-V: {SA, NSW, T}; {red, blue, green}
